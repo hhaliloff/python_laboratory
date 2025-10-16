@@ -1,4 +1,4 @@
-from laba_1 import two_sum
+from .laba_1 import two_sum
 import unittest
 
 

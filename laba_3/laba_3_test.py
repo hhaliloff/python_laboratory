@@ -1,4 +1,4 @@
-from laba_3 import gen_bin_tree
+from .laba_3 import gen_bin_tree
 import unittest
 
 

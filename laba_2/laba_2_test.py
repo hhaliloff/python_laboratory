@@ -1,4 +1,4 @@
-from laba_2 import findnum
+from .laba_2 import findnum
 import unittest
 
 
