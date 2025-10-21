@@ -1,4 +1,6 @@
 import json
+from collections import deque
+
 
 def get_leaf(root=2, height=6, left_branch=lambda l_r: l_r*3, right_branch=lambda r_r: r_r+4):
     """
@@ -19,8 +21,7 @@ def get_leaf(root=2, height=6, left_branch=lambda l_r: l_r*3, right_branch=lambd
             for j in range(1, 2**i+1):
                 vspom.append(left_branch(leafs[-j]))
                 vspom.append(right_branch(leafs[-j]))
-        for k in range(len(vspom)):
-            leafs.append(vspom[k])
+        leafs.extend(vspom)
         vspom = []
     return leafs
 
@@ -49,14 +50,11 @@ def gen_bin_tree(root=2, height=6, left_branch=lambda l_r: l_r*3, right_branch=l
     tree = list(map(lambda x: {x: {}}, tree))
     for l in range(height-1, -1, -1):
         for m in range(2**l-1, 2**(l+1)-1):
-            if l == height-1:
-                key = list(tree[m].keys())[0]
-                tree[m][key] = {**tree[-1], **tree[-2]}
-                tree = tree[:-2]
-            else:
-                key = list(tree[m].keys())[0]
-                tree[m][key] = {**tree[-1], **tree[-2]}
-                tree = tree[:-2]
+            key = next(iter(tree[m]))
+            right_child = tree.pop()
+            left_child = tree.pop()
+            tree[m][key].update(right_child)
+            tree[m][key].update(left_child)
     return tree[0]
 
 

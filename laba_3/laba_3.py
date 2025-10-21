@@ -1,6 +1,6 @@
 import json
 
-def get_lr(root, height) -> dict:
+def get_lr(root, height, right = lambda l_r: l_r*3, left = lambda r_r: r_r+4) -> dict:
     """
     получает на вход корень дерева и высоту дерева
     возвращает дерево с заданными параметрами без корня(сразу же две ветки)
@@ -9,14 +9,14 @@ def get_lr(root, height) -> dict:
     {9: {27: {}, 13: {}}, 7: {21: {}, 11: {}}}
 
     """
-    rootl = root*3
-    rootr = root+4
+    rootl = right(root)
+    rootr = left(root)
     if height == 0:
         return {}
     else:
-        return {rootl: get_lr(rootl, height-1), rootr: get_lr(rootr, height-1)}
+        return {rootl: get_lr(rootl, height-1, right, left), rootr: get_lr(rootr, height-1, right, left)}
 
-def gen_bin_tree(root, height) -> dict:
+def gen_bin_tree(root, height, right = lambda l_r: l_r*3, left = lambda r_r: r_r+4) -> dict:
     """
     получает на вход корень дерева и высоту дерева
     возвращает полное дерево с заданными параметрами вместе с изначальным корнем (root)
@@ -25,7 +25,7 @@ def gen_bin_tree(root, height) -> dict:
     {3: {9: {27: {}, 13: {}}, 7: {21: {}, 11: {}}}}
 
     """
-    tree = {root: get_lr(root, height)}
+    tree = {root: get_lr(root, height, right, left)}
     return tree
 
 def main() -> json:
