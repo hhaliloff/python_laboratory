@@ -4,25 +4,6 @@ import sys
 import logging
 import requests
 
-"""log = logging.getLogger("quadratic")
-log.setLevel(logging.INFO)
-log.handlers.clear()
-stream = io.StringIO()
-handler = logging.StreamHandler(stream)
-formatter = logging.Formatter("%(levelname)s:%(name)s:%(message)s")
-handler.setFormatter(formatter)
-
-log.addHandler(handler)
-
-log1 = logging.getLogger("currency")
-file_logger = logging.getLogger("file")
-file_logger.setLevel(logging.INFO)
-file_handler = logging.FileHandler("logger")
-file_logger.addHandler(file_handler)
-formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-file_handler.setFormatter(formatter)
-io_file = io.StringIO()"""
-
 io_log = io.StringIO()
 
 
