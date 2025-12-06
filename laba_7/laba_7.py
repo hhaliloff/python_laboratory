@@ -78,7 +78,6 @@ def get_currencies(currency_codes: list, url="https://www.cbr-xml-daily.ru/daily
     ["USD", "JPY", "AZN", "EUR"]
     >> {'USD': 78.2503, 'JPY': 50.2023, 'AZN': 46.0296, 'EUR': 90.788}
     """
-
     request = requests.get(url)
     values = {}
     try:
